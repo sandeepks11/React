@@ -49,3 +49,4 @@ class Stock extends React.Component {
   }
 }
 export default Stock;
+

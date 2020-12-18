@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { FaCentercode } from 'react-icons/fa';
+import Countup from 'react-countup';
 import axios from 'axios';
 import img1 from "./IMAGES/university4.jpg";
 
 import {CardGroup,Card,CardDeck,ListGroupItem,ListGroup} from 'react-bootstrap';
+import CountUp from 'react-countup';
 
 
 class Tiles extends Component {
@@ -44,8 +46,8 @@ class Tiles extends Component {
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src={img1} />
               <Card.Body>
-                <Card.Title style={{color:'#1ebae6',align:'center'}}>  Unviversities Available  {i}</Card.Title>
-                <Card.Title style={{color:'#1ebae6',align:'center'}}>  Admissions Completed &nbsp;&nbsp;    {n}</Card.Title>
+                <Card.Title style={{color:'#1ebae6',align:'center'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.of Universities <CountUp end={i}/></Card.Title>
+                <Card.Title style={{color:'#1ebae6',align:'center'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.of Admissions &nbsp;&nbsp;&nbsp;&nbsp;<CountUp end={n} duration={10}/></Card.Title>
                 <Card.Text>
                 </Card.Text>
                 <Card.Link href="Universities">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Universities</Card.Link>

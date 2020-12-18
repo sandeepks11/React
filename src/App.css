@@ -32,17 +32,20 @@
 
 .home
 {
-  background-color: #d1eaf1;
-  justify-content: center;
-  /* width:1420px; */
-  display: flex;
-  
+   background-color: #d1eaf1;
+   justify-content: center; 
+   width:1420px; 
+   display: flex; 
+   padding-left: 100px;
 }
 
 .chart
 {
-  width:920px; 
+  width:1320px; 
+  background-color: #d1eaf1;
+  padding-left: 250px;
 }
+
 .university
 {
   background-color: #d1eaf1;

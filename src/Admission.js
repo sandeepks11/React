@@ -17,6 +17,8 @@ import University from './University';
 import * as yup from 'yup';
 import { string } from 'yup/lib/locale';
 
+// import { hot } from 'react-hot-loader/root';
+
 
 class Admission extends Component {
 
@@ -57,20 +59,27 @@ class Admission extends Component {
     componentDidMount() 
    {
     
-        axios.get('http://universities.hipolabs.com/search?country=India')
-        .then(respond => {this.setState({datas:respond.data})}); 
+       axios.get('http://universities.hipolabs.com/search?country=India')
+       .then(respond => {this.setState({datas:respond.data})}); 
 
-        axios.get('https://api.covid19india.org/state_district_wise.json')
-        .then(respond => {this.setState({dist:respond.data})}); 
+       axios.get('https://api.covid19india.org/state_district_wise.json')
+      .then(respond => {this.setState({dist:respond.data})}); 
         
+      var get=JSON.parse(localStorage.getItem('admission'));
+      if(get===null)
+      {
 
-        this.getData=JSON.parse(localStorage.getItem('admission'))
+      localStorage.setItem('admission',JSON.stringify([]));
+
+      }
+
+       this.getData=JSON.parse(localStorage.getItem('admission'))
         // console.log(this.getData);
    
-        this.setState({getData:JSON.parse(localStorage.getItem('admission'))});
+       this.setState({getData:JSON.parse(localStorage.getItem('admission'))});
         // console.log(this.state.getData)
 
-        $(document).ready(function () {
+       $(document).ready(function () {
             $('#example').DataTable();
         });
 
@@ -242,6 +251,7 @@ register=(e)=>
             get.push(datas);
             localStorage.setItem('admission',JSON.stringify(get));
             alert('Registered Successfully')
+            window.location.reload();
 
         }   
     } 
@@ -284,6 +294,7 @@ register=(e)=>
             admissionValue.splice(k,1,datas)
             localStorage.setItem('admission',JSON.stringify(admissionValue))
             alert('Updated successfully')
+            window.location.reload();
 
 
    }
@@ -301,6 +312,17 @@ register=(e)=>
         this.setState({admission:admissionValue});
         localStorage.setItem('admission',JSON.stringify(admissionValue))
         alert('Deleted Successfully')
+        window.location.reload();
+   }
+
+   getUnique(arr,comp)
+   {
+     const unique=arr.map(e=>e[comp])
+     .map((e,i,final)=>final.indexOf(e)===i && i)
+     .filter(e=>arr[e])
+     .map(e=>arr[e]);
+ 
+     return unique;
    }
 
       render(){
@@ -308,6 +330,8 @@ register=(e)=>
         var selectedIndex=-1;
         let i=0;
         let keys=Object.keys(this.state.dist)
+
+        const UniqueState=this.getUnique(this.state.datas,"state-province")
 
 
       return (
@@ -402,14 +426,17 @@ register=(e)=>
 
               {!this.state.show2 ?
                <option >Select State</option>:
-                    <option  >{this.state.states}</option>}
-                {keys.map((item,k) => {
+                <option  >{this.state.states}</option>}
+               {UniqueState.map((item,k) => {
+
+                if(item['state-province']!=null)
+                {
 
                 return (
+                <option>{item['state-province']}</option>
+                
 
-                <option>{item}</option>
-
-                )})}
+                  )}})}
                  
             </Form.Control>
               <div id="error">{this.state.stateError}</div>
@@ -417,7 +444,7 @@ register=(e)=>
 
 
              
-            <p>Select University</p>
+           <p>Select University</p>
            <Form.Control as="select" name="university" onChange={this.formGet} required >
 
            {!this.state.show2 ?
@@ -428,11 +455,13 @@ register=(e)=>
 
                  {this.state.datas.map((item,k) => {
                 
+                if(item['state-province']===this.state.states)
+                {
                     return (
 
                     <option>{item.name}</option>
 
-                    )})}   
+                    )}})}   
                   
             </Form.Control> 
             <div id="error">{this.state.universityError}</div>  <br></br> 

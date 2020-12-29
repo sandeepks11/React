@@ -14,9 +14,7 @@ function App() {
   
   return (
   
-  
-
-    <Router>
+  <Router>
     
     <Sidemenu />
     <Switch>
@@ -24,9 +22,7 @@ function App() {
           <Route path='/' exact component= {Home} />
           <Route path='/Universities' component= {DataTable} /> 
           <Route path='/Admissions' component= {Admission} />
-    
-      
-     
+        
     </Switch>
   </Router>
   

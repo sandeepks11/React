@@ -59,13 +59,10 @@ class Admission extends Component {
     componentDidMount() 
    {
     
-       axios.get('http://universities.hipolabs.com/search?country=India')
-       .then(respond => {this.setState({datas:respond.data})}); 
-
-       axios.get('https://api.covid19india.org/state_district_wise.json')
-      .then(respond => {this.setState({dist:respond.data})}); 
+      axios.get('http://universities.hipolabs.com/search?country=India').then(respond => {this.setState({datas:respond.data})}); 
         
       var get=JSON.parse(localStorage.getItem('admission'));
+
       if(get===null)
       {
 
@@ -73,11 +70,10 @@ class Admission extends Component {
 
       }
 
-       this.getData=JSON.parse(localStorage.getItem('admission'))
-        // console.log(this.getData);
+      this.getData=JSON.parse(localStorage.getItem('admission'))
    
-       this.setState({getData:JSON.parse(localStorage.getItem('admission'))});
-        // console.log(this.state.getData)
+      this.setState({getData:JSON.parse(localStorage.getItem('admission'))});
+
 
        $(document).ready(function () {
             $('#example').DataTable();
@@ -85,8 +81,6 @@ class Admission extends Component {
 
 
    }
-
-
 
 
    formGet=(e)=>
@@ -167,7 +161,7 @@ validate=()=>
         isError=true;
         errors.addressError="Please provide Address"
     }
-    else   if(this.state.address.match(/[_\W]/))
+    else if(this.state.address.match(/[_\W]/))
     {
         isError=true;
         errors.addressError="Please enter a valid address"

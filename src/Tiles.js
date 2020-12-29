@@ -46,7 +46,7 @@ class Tiles extends Component {
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src={img1} />
               <Card.Body>
-                <Card.Title style={{color:'#1ebae6',align:'center'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.of Universities <CountUp end={i}/></Card.Title>
+                <Card.Title style={{color:'#1ebae6',align:'center'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.of Universities <CountUp end={i} duration={5}/></Card.Title>
                 <Card.Title style={{color:'#1ebae6',align:'center'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No.of Admissions &nbsp;&nbsp;&nbsp;&nbsp;<CountUp end={n} duration={10}/></Card.Title>
                 <Card.Text>
                 </Card.Text>

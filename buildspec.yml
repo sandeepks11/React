@@ -1,9 +1,8 @@
 version:0.2
 
-
 phases:
   pre_build:
-    commamnds:
+    commands:
         -npm install
       
   build:

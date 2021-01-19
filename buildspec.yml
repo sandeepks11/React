@@ -6,14 +6,14 @@ phases:
         -npm install
       
   build:
-     command:
+     commands:
         -npm run build
         
  artifacts:
      files:
        - '**/*
-   discard-paths:no
-   base-directory:build
+   discard-paths: no
+   base-directory: build
    
    
    

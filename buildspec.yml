@@ -3,16 +3,15 @@ version: 0.2
 phases:
   pre_build:
     commands:
-        -npm install
+       -npm install
   build:
     commands:
-        -npm run build
-        
- artifacts:
-   files:
+       -npm run build
+artifacts:
+  files:
        - '**/*'
-   discard-paths: no
-   base-directory: build
+  discard-paths: no
+  base-directory: build
    
    
    
